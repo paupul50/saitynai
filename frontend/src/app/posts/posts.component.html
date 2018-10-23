@@ -1,0 +1,15 @@
+<div *ngIf="postsLoaded" class="row">
+  <div class="col-md-6">
+    <app-post *ngFor="let post of posts | paginate: { itemsPerPage: 5, currentPage: p }" [post]="post"></app-post>
+    <div *ngIf="!posts.length==0" class="pages">
+      <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="Ankstesnis" nextLabel="Kitas"></pagination-controls>
+    </div>
+    
+  </div>
+  <div *ngIf="userService.getToken()" class="col-md-6">
+    <app-create-post (onPostCreated)="updatePosts($event)"></app-create-post>
+  </div>
+</div>
+<div *ngIf="!postsLoaded">
+  Kraunama.
+</div>

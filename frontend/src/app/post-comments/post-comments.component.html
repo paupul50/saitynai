@@ -1,0 +1,41 @@
+<button class="btn btn-primary" [routerLink]="['/posts']">Grįžti</button>
+<div class="container">
+    <div *ngIf="postLoaded && commentsLoaded">
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-7 shadow-sm card">
+                <h2 class="blog-post-title">{{post.title}} </h2>
+                <small class="blog-post-meta">Autorius id: {{post.user_id}} <br>Data: {{post.created_at | date:'yyyy-MM-dd HH:mm'}}</small>
+                <p>{{post.body}}</p>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <hr>
+
+        <div *ngIf="post.commentCount!=0">
+            <h4>Komentarai:</h4>
+            <app-comment *ngFor="let comment of comments | paginate: { itemsPerPage: 10, currentPage: p }"
+                [comment]="comment"></app-comment>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-7 pages">
+                    <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="Ankstesnis" nextLabel="Kitas"></pagination-controls>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <hr>
+
+        </div>
+        <div *ngIf="userService.getToken()">
+                <h4>Naujas komentaras:</h4><br>
+                <app-create-comment (onCommentCreated)="updateComments($event)" [id]="id"></app-create-comment>
+        </div>
+
+    </div>
+    <div *ngIf="!postLoaded && !commentsLoaded">
+        Kraunama.
+    </div>
+
+
+</div>

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="col-md-12 mb-4">
+          <label for="body">Tekstas</label>
+          <textarea [formControl]="form.controls['body']" type="text" rows="2" class="form-control" [class.is-invalid]="!form.controls['body'].valid && formSubmited &&!changeReceived"
+            id="body"></textarea>
+          <div *ngIf="formSubmited">
+            <div *ngIf="!form.valid && !changeReceived" class="invalid-form">
+              Neteisingi duomenys.
+            </div>
+          </div>
+          <div *ngIf="changeReceived " class="valid-from">
+            Duomeys išsaugoti.
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit">Saugoti</button>
+    </form>
+    <br>
+    <div class="col-md-2"></div>
+  </div>
+</div>

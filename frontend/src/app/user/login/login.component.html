@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <label for="title">El. paštas</label>
+      <input [formControl]="form.controls['email']" type="text" class="form-control" [class.is-invalid]="!form.controls['email'].valid && formSubmited"
+        id="title" >
+    </div>
+    <div class="form-row">
+      <label for="title">Slaptažodis</label>
+      <input [formControl]="form.controls['password']" type="text" class="form-control" [class.is-invalid]="!form.controls['password'].valid && formSubmited"
+        id="title">
+    </div>
+    <div *ngIf="formSubmited">
+      <div *ngIf="!form.valid || !loginSuccess" class="invalid-form">
+        Neteisingi duomenys.
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Saugoti</button>
+  </form>

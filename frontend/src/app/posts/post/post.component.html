@@ -1,0 +1,7 @@
+<div class="blog-post shadow-sm card">
+  <h2 class="blog-post-title"><a [routerLink]="['/posts', post.id]">{{post.title}}</a> </h2>
+  <small class="blog-post-meta">Autorius id: {{post.user_id}} <br>Data: {{post.created_at | date:'yyyy-MM-dd HH:mm'}}</small>
+  <p>{{post.body}}</p>
+  <br>
+  <small class="text-muted">komentarų: {{post.comment_count}} </small>
+</div>

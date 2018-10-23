@@ -1,0 +1,54 @@
+.container{
+    margin-top:40px;
+    font-family: 'Nunito', sans-serif;
+    
+}
+.toDo{
+    border-radius: .25rem;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 1px solid rgba(0,0,0,.125);
+    
+}
+.toDo:hover{
+    cursor: grab;
+    background-color: #3490dc5b;
+}
+
+.delete{
+    font-style: italic;
+    color:rgb(255, 0, 0);
+}
+.delete:hover{
+    cursor: pointer;
+}
+
+.done{
+    text-decoration: line-through;
+}
+
+.colourTheme{
+    background-color: rgb(250, 250, 250);
+}
+
+.toDoButton{
+    background-color: #3490dc;
+    font-size: .9rem;
+}
+
+.custom-control-label::after{
+    background-color: #3490dc;
+    border-radius: 0.25rem;
+}
+.valid-from{
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #28a745;
+}
+.invalid-form{
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}

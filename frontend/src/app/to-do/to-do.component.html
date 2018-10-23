@@ -1,0 +1,50 @@
+
+  <h3>Užduočių šąrašas:</h3>
+  <div class="row">
+    <div class="col-md-6">
+      <div *ngIf="toDoCount==0">Čia nieko nėra :(</div>
+      <div [sortablejs]="toDos" [sortablejsOptions]="options">
+        <div *ngFor="let toDo of toDos" class="row colourTheme toDo">
+          <div class="col-9">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" (click)="ChangeState(toDo)" [checked]="toDo.isDone" class="custom-control-input"
+                id="customCheck{{toDo.position}}">
+              <label class="custom-control-label" for="customCheck{{toDo.position}}">
+                <div *ngIf="toDo.isDone" class="done">
+                  {{toDo.text}}
+                </div>
+                <div *ngIf="!toDo.isDone">
+                  {{toDo.text}}
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-2">
+            <div class="delete" (click)="RemoveToDo(toDo)">ištrinti</div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div class="col-md-6">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="col-md-12 mb-4">
+                <label for="body">Tekstas</label>
+                <input [formControl]="form.controls['body']" type="text" class="form-control" [class.is-invalid]="!form.controls['body'].valid && formSubmited &&!changeReceived"
+                  id="body">
+                <div *ngIf="formSubmited">
+                  <div *ngIf="!form.valid && !changeReceived" class="invalid-form">
+                    Neteisingi duomenys.
+                  </div>
+                </div>
+                <div *ngIf="changeReceived " class="valid-from">
+                  Duomeys išsaugoti.
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Saugoti</button>
+          </form>
+    </div>
+  </div>

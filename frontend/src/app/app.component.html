@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" [routerLink]="['/']">Užduotys</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav navbar">
+            <a class="nav-item nav-link" [routerLink]="['/home']">Pradinis</a>
+            <a class="nav-item nav-link" [routerLink]="['/posts']">Pranešimai</a>
+            <a *ngIf="userService.getToken()" class="nav-item nav-link" [routerLink]="['/todos']">Užduotys</a>
+            <a *ngIf="!userService.getToken()" class="nav-item nav-link" [routerLink]="['/login']">Prisijungti</a>
+            <a *ngIf="!userService.getToken()" class="nav-item nav-link" [routerLink]="['/register']">Registruotis</a>
+            <a *ngIf="userService.getToken()" class="nav-item nav-link" (click)="logout()" [routerLink]="['/home']" >Atsijungti</a>
+        </div>
+    </div>
+</nav>
+<br>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
